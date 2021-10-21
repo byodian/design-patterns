@@ -1,0 +1,22 @@
+{
+  "name": "design-patterns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "decorator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byodian/design-patterns.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/byodian/design-patterns/issues"
+  },
+  "homepage": "https://github.com/byodian/design-patterns#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
