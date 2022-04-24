@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/byodian/design-patterns#readme",
   "devDependencies": {
+    "lite-server": "^2.6.1",
     "nodemon": "^2.0.14"
   }
 }
