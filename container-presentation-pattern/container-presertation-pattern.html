@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Container/Presentational pattern</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+    // Presentational component
+
+    // Container component
+    class DogImagesContainer extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          dogs: []
+        };
+      }
+      
+      componentDidMount() {
+        fetch('https://dog.ceo/api/breed/labrador/images/random/6')
+          .then(res => res.json())
+          .then(({ message }) => this.setState({ dogs: message }));
+        console.log('componentDidMount', this.state.dogs)
+      }
+
+      componentDidUpdate() {
+        console.log('componentDidUpdate', this.state.dogs)
+      }
+
+      render() {
+        return <DogImages dogs={this.state.dogs} />;
+      }
+    }
+
+    ReactDOM
+      .createRoot(document.getElementById('app'))
+      .render(<DogImagesContainer />);
+    
+  </script>
+</body>
+
+</html>

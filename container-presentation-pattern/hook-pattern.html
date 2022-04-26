@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Container/Presentational pattern</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+    // Using a custom hook to fetch images  
+    function useDogImages() {
+      const [dogs, setDogs] = React.useState([]);
+
+      React.useEffect(() => {
+        fetch('https://dog.ceo/api/breeds/image/random/3')
+          .then(response => response.json())
+          .then(data => setDogs(data.message))
+          .catch(error => console.log(error));
+      }, []);
+
+      return dogs;
+    }
+
+    // Container component
+    function DogImages() {
+      const dogs = useDogImages();
+
+      return (
+        <div>
+          {dogs.map((dog, i) => (
+            <img src={dog} key={i} alt="dog" />
+          ))}
+        </div>
+      );
+    }
+
+    ReactDOM
+      .createRoot(document.getElementById('app'))
+      .render(<DogImages />);
+    
+  </script>
+</body>
+
+</html>
