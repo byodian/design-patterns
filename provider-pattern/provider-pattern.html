@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Provider Pattern</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+    const DataContext = React.createContext();
+
+    function App() {
+      const data = {
+        title: 'React Example',
+        listItem: 'Sidebar title',
+        text: 'Heading2'
+      }
+      return (
+        <div>
+          <DataContext.Provider value={data}>
+            <SideBar />
+            <Content />
+          </DataContext.Provider>
+        </div>
+      );
+    }
+
+
+    const List = () => <ListItem />
+    const SideBar = () => <List />
+    const Content = () => (
+      <div>
+        <Header />
+        <Text />
+      </div>
+    )
+
+    const ListItem = () => {
+      const data = React.useContext(DataContext);
+      return <h2>{data.listItem}</h2>
+    }
+
+    const Text = () => {
+      const data = React.useContext(DataContext);
+      return <h2>{data.text}</h2>
+    }
+
+    const Header = () => { 
+      const data = React.useContext(DataContext);
+      return <h1>{data.title}</h1> 
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('app'));
+    root.render(<App />);
+    // root.render(React.createElement(LikeButton));
+  </script>
+</body>
+
+</html>
